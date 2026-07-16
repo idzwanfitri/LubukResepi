@@ -73,7 +73,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     <nav class="breadcrumb"><a href="index.html">Utama</a> / <a href="recipes.html">Resepi</a> / ${LubukResepi.escapeHtml(recipe.name)}</nav>
     <div class="recipe-hero">
       <div class="recipe-hero-media" style="background:${LubukResepi.escapeHtml(recipe.color || "#f2b441")}22;">
-        <span aria-hidden="true">${recipe.emoji || "🍽️"}</span>
+        ${
+          recipe.image
+            ? `<img src="${LubukResepi.escapeHtml(recipe.image)}" alt="${LubukResepi.escapeHtml(recipe.name)}">`
+            : `<span aria-hidden="true">${recipe.emoji || "🍽️"}</span>`
+        }
       </div>
       <div class="recipe-hero-info">
         <h1 class="recipe-title">${LubukResepi.escapeHtml(recipe.name)}</h1>

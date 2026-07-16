@@ -65,8 +65,12 @@ Tiada panel admin pada peringkat ini. Untuk menambah resepi:
 1. Buka `data/recipes.json`
 2. Tambah objek resepi baharu mengikut struktur sedia ada (rujuk resepi lain sebagai contoh)
 3. Pastikan `slug` adalah unik dan mesra URL
-4. Letakkan gambar sebenar (jika ada) dalam `assets/images/recipes/` dan kemas kini medan `image`
+4. Letakkan gambar dalam `assets/images/recipes/<slug>.jpg` dan kemas kini medan `image`
 5. Uji di komputer sebelum push
+
+## Nota Gambar
+
+Gambar resepi buat masa ini (Fasa 1) diambil daripada Wikimedia Commons di bawah lesen terbuka (CC BY / CC BY-SA / domain awam) sebagai *placeholder*, sementara menunggu gambar asli LubukResepi. Sumber dan lesen setiap gambar direkodkan dalam `assets/images/recipes/credits.json` dan dipaparkan di halaman [Tentang Kami](about.html). Apabila gambar asli sedia ada, gantikan fail dalam `assets/images/recipes/` dan padam entri berkaitan dalam `credits.json`.
 
 Medan `emoji` dan `color` digunakan sebagai placeholder visual sehingga gambar sebenar ditambah.
 

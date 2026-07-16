@@ -61,6 +61,10 @@
 
       <h2>Status Projek</h2>
       <p>LubukResepi masih di peringkat awal (Fasa 1 — MVP). Kandungan resepi akan terus bertambah dari semasa ke semasa. Ada cadangan resepi atau maklum balas? Hubungi kami melalui <a href="contact.html">halaman ini</a>.</p>
+
+      <h2>Kredit Gambar</h2>
+      <p>Gambar resepi pada peringkat MVP ini diambil daripada Wikimedia Commons di bawah lesen terbuka (Creative Commons / domain awam), sementara menunggu gambar asli LubukResepi sendiri disediakan.</p>
+      <div id="image-credits"></div>
     </div>
   </main>
 
@@ -73,5 +77,25 @@
   </footer>
 
   <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const el = document.getElementById("image-credits");
+      try {
+        const [credits, recipes] = await Promise.all([
+          LubukResepi.fetchJSON("assets/images/recipes/credits.json"),
+          LubukResepi.loadRecipes(),
+        ]);
+        const nameBySlug = Object.fromEntries(recipes.map((r) => [r.slug, r.name]));
+        el.innerHTML = `<ul>${credits
+          .map(
+            (c) =>
+              `<li>${LubukResepi.escapeHtml(nameBySlug[c.slug] || c.slug)} — foto oleh ${LubukResepi.escapeHtml(c.artist)}, <a href="${LubukResepi.escapeHtml(c.source_url)}" target="_blank" rel="noopener">Wikimedia Commons</a> (${LubukResepi.escapeHtml(c.license)})</li>`
+          )
+          .join("")}</ul>`;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>

@@ -82,7 +82,11 @@ const LubukResepi = (() => {
     return `
       <a class="recipe-card" href="recipe.html?slug=${encodeURIComponent(recipe.slug)}">
         <div class="recipe-card-media" style="background:${escapeHtml(recipe.color || "#f2b441")}22;">
-          <span aria-hidden="true">${recipe.emoji || "🍽️"}</span>
+          ${
+            recipe.image
+              ? `<img src="${escapeHtml(recipe.image)}" alt="${escapeHtml(recipe.name)}" loading="lazy">`
+              : `<span aria-hidden="true">${recipe.emoji || "🍽️"}</span>`
+          }
           ${recipe.featured ? '<span class="badge-featured">⭐ Pilihan</span>' : ""}
         </div>
         <div class="recipe-card-body">

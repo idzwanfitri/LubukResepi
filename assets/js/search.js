@@ -131,7 +131,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const missingNames = match.missing.map((i) => LubukResepi.escapeHtml(i.name)).join(", ");
         return `
         <a class="match-result-card" href="recipe.html?slug=${encodeURIComponent(recipe.slug)}">
-          <div class="match-emoji" style="background:${LubukResepi.escapeHtml(recipe.color || "#f2b441")}22;">${recipe.emoji || "🍽️"}</div>
+          <div class="match-emoji" style="background:${LubukResepi.escapeHtml(recipe.color || "#f2b441")}22;">${
+          recipe.image
+            ? `<img src="${LubukResepi.escapeHtml(recipe.image)}" alt="" loading="lazy">`
+            : recipe.emoji || "🍽️"
+        }</div>
           <div class="match-result-body">
             <div class="recipe-card-title">${LubukResepi.escapeHtml(recipe.name)}</div>
             <div class="match-percent ${level.cls}">${match.percent}% · ${level.label}</div>
