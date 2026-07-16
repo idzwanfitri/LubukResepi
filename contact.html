@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hubungi Kami — MasakApa</title>
+  <meta name="description" content="Hubungi MasakApa untuk cadangan resepi, kerjasama atau maklum balas.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Langkau ke kandungan</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><span class="logo-mark">🍲</span> MasakApa</a>
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html">Utama</a></li>
+          <li><a href="recipes.html">Semua Resepi</a></li>
+          <li><a href="search.html">Cari Ikut Bahan</a></li>
+          <li><a href="about.html">Tentang Kami</a></li>
+          <li><a href="contact.html" aria-current="page">Hubungi Kami</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container" style="padding:28px 16px 48px;">
+      <h1>Hubungi Kami</h1>
+      <p>Ada cadangan resepi, nak sumbangkan resepi keluarga, atau jumpa sebarang isu di laman ini? Hantar mesej kepada kami.</p>
+
+      <form class="form-card" id="contact-form">
+        <div class="form-row">
+          <label for="contact-name">Nama</label>
+          <input type="text" id="contact-name" name="name" required>
+        </div>
+        <div class="form-row">
+          <label for="contact-email">Emel</label>
+          <input type="email" id="contact-email" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="contact-message">Mesej</label>
+          <textarea id="contact-message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-block">Hantar Mesej</button>
+        <p class="form-note">Borang ini akan membuka aplikasi emel anda dengan mesej yang telah diisi terlebih dahulu, kerana MasakApa masih laman statik tanpa pelayan pada peringkat ini.</p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; <span id="footer-year"></span> MasakApa. Ada bahan, ada resepi.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("contact-name").value;
+      const email = document.getElementById("contact-email").value;
+      const message = document.getElementById("contact-message").value;
+      const subject = encodeURIComponent(`Mesej daripada ${name} — MasakApa`);
+      const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+      window.location.href = `mailto:hello@masakapa.my?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>

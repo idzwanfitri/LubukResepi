@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semua Resepi — MasakApa</title>
+  <meta name="description" content="Terokai koleksi resepi MasakApa — tapis mengikut kategori, negara, kaum, kesukaran dan masa memasak.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Langkau ke kandungan</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><span class="logo-mark">🍲</span> MasakApa</a>
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html">Utama</a></li>
+          <li><a href="recipes.html" aria-current="page">Semua Resepi</a></li>
+          <li><a href="search.html">Cari Ikut Bahan</a></li>
+          <li><a href="about.html">Tentang Kami</a></li>
+          <li><a href="contact.html">Hubungi Kami</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container" style="padding-top:24px;">
+      <h1>Semua Resepi</h1>
+      <p>Tapis dan cari resepi mengikut kategori, negara, kaum, kesukaran atau masa memasak.</p>
+
+      <div class="filters-bar">
+        <div class="filters-row">
+          <div class="field-group">
+            <label for="filter-q">Cari nama resepi</label>
+            <input type="search" id="filter-q" placeholder="cth: nasi lemak">
+          </div>
+          <div class="field-group">
+            <label for="filter-category">Kategori</label>
+            <select id="filter-category"></select>
+          </div>
+          <div class="field-group">
+            <label for="filter-country">Negara</label>
+            <select id="filter-country"></select>
+          </div>
+          <div class="field-group">
+            <label for="filter-community">Kaum</label>
+            <select id="filter-community"></select>
+          </div>
+          <div class="field-group">
+            <label for="filter-difficulty">Kesukaran</label>
+            <select id="filter-difficulty">
+              <option value="">Semua Tahap</option>
+              <option value="Mudah">Mudah</option>
+              <option value="Sederhana">Sederhana</option>
+              <option value="Sukar">Sukar</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="filter-time">Masa Maksimum</label>
+            <select id="filter-time">
+              <option value="">Tiada Had</option>
+              <option value="30">30 minit</option>
+              <option value="60">1 jam</option>
+              <option value="90">1 jam 30 minit</option>
+            </select>
+          </div>
+        </div>
+        <div class="filters-footer">
+          <div class="field-group" style="min-width:180px;">
+            <label for="filter-sort">Susun</label>
+            <select id="filter-sort">
+              <option value="terbaru">Terbaru</option>
+              <option value="pilihan">Resepi Pilihan</option>
+              <option value="cepat">Paling Cepat</option>
+              <option value="kos">Kos Terendah</option>
+              <option value="az">Nama A hingga Z</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" id="filter-reset">Set Semula Penapis</button>
+        </div>
+      </div>
+
+      <p class="results-count" id="results-count"></p>
+      <div class="recipe-grid" id="recipe-grid"></div>
+      <div class="empty-state" id="empty-state" hidden>
+        <span class="empty-emoji">🔍</span>
+        Tiada resepi sepadan dengan penapis anda. Cuba set semula penapis.
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; <span id="footer-year"></span> MasakApa. Ada bahan, ada resepi.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/filters.js"></script>
+  <script src="assets/js/recipes.js"></script>
+</body>
+</html>

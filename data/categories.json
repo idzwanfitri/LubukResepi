@@ -1,0 +1,16 @@
+[
+  { "id": 1, "name": "Sarapan", "slug": "sarapan", "icon": "🍳" },
+  { "id": 2, "name": "Makan Tengah Hari", "slug": "makan-tengah-hari", "icon": "🍛" },
+  { "id": 3, "name": "Makan Malam", "slug": "makan-malam", "icon": "🍽️" },
+  { "id": 4, "name": "Nasi", "slug": "nasi", "icon": "🍚" },
+  { "id": 5, "name": "Mee & Bihun", "slug": "mee-bihun", "icon": "🍜" },
+  { "id": 6, "name": "Sup", "slug": "sup", "icon": "🥣" },
+  { "id": 7, "name": "Ayam", "slug": "ayam", "icon": "🍗" },
+  { "id": 8, "name": "Daging", "slug": "daging", "icon": "🥩" },
+  { "id": 9, "name": "Ikan & Seafood", "slug": "ikan-seafood", "icon": "🐟" },
+  { "id": 10, "name": "Sayur", "slug": "sayur", "icon": "🥦" },
+  { "id": 11, "name": "Kuih & Pencuci Mulut", "slug": "kuih-pencuci-mulut", "icon": "🍮" },
+  { "id": 12, "name": "Minuman", "slug": "minuman", "icon": "🥤" },
+  { "id": 13, "name": "Air Fryer", "slug": "air-fryer", "icon": "🍟" },
+  { "id": 14, "name": "Menu Bajet", "slug": "menu-bajet", "icon": "💰" }
+]

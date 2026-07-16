@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cari Ikut Bahan — MasakApa</title>
+  <meta name="description" content="Pilih bahan yang ada di dapur anda dan biar MasakApa cadangkan resepi yang paling sepadan — tanpa perlu keluar membeli-belah.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Langkau ke kandungan</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><span class="logo-mark">🍲</span> MasakApa</a>
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html">Utama</a></li>
+          <li><a href="recipes.html">Semua Resepi</a></li>
+          <li><a href="search.html" aria-current="page">Cari Ikut Bahan</a></li>
+          <li><a href="about.html">Tentang Kami</a></li>
+          <li><a href="contact.html">Hubungi Kami</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container" style="padding-top:24px;">
+      <h1>Cari Ikut Bahan</h1>
+      <p>Pilih bahan yang ada di dapur anda. MasakApa akan cadangkan resepi yang paling sepadan — walaupun bahan tak lengkap sepenuhnya.</p>
+
+      <div class="field-group" style="max-width:520px; margin-bottom:20px;">
+        <label for="ingredient-custom">Bahan lain (pisahkan dengan koma)</label>
+        <input type="text" id="ingredient-custom" placeholder="cth: udang, cili api, daun kunyit">
+      </div>
+
+      <div id="ingredient-picker"></div>
+
+      <button type="button" class="btn btn-outline btn-sm" id="ingredient-clear" style="margin-bottom:24px;">Kosongkan Pilihan</button>
+
+      <div class="section-head">
+        <h2>Cadangan Resepi</h2>
+        <span class="results-count" id="match-count"></span>
+      </div>
+      <div id="match-results"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        &copy; <span id="footer-year"></span> MasakApa. Ada bahan, ada resepi.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/search.js"></script>
+</body>
+</html>

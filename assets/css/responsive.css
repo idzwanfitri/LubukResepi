@@ -1,0 +1,124 @@
+/* =========================================================
+   MasakApa — Responsive overrides
+   Mobile-first base lives in style.css; widen layout here.
+   ========================================================= */
+
+/* Small tablets and up */
+@media (min-width: 560px) {
+  .chip-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filters-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipe-meta-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablets / small desktop */
+@media (min-width: 768px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero p.hero-sub {
+    font-size: 1.05rem;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    position: static;
+    transform: none;
+    inset: auto;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .main-nav ul {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .main-nav a {
+    border-bottom: none;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+  }
+
+  .main-nav a:hover,
+  .main-nav a[aria-current="page"] {
+    background: var(--color-primary-light);
+  }
+
+  .chip-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .filters-bar {
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .filters-row {
+    grid-template-columns: repeat(5, 1fr);
+    flex: 1;
+  }
+
+  .recipe-hero {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .recipe-hero-media {
+    width: 40%;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  .recipe-hero-info {
+    flex: 1;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .recipe-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .chip-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .recipe-meta-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+}

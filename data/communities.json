@@ -1,0 +1,9 @@
+[
+  { "id": 1, "name": "Melayu", "slug": "melayu" },
+  { "id": 2, "name": "Cina", "slug": "cina" },
+  { "id": 3, "name": "India", "slug": "india" },
+  { "id": 4, "name": "Sabah", "slug": "sabah" },
+  { "id": 5, "name": "Sarawak", "slug": "sarawak" },
+  { "id": 6, "name": "Peranakan", "slug": "peranakan" },
+  { "id": 7, "name": "Mamak", "slug": "mamak" }
+]

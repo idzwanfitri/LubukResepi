@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MasakApa — Ada Bahan, Ada Resepi</title>
+  <meta name="description" content="MasakApa ialah platform resepi percuma yang menghimpunkan resepi pelbagai kaum dan negara. Cari resepi berdasarkan nama, kategori atau bahan yang ada di dapur anda.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Langkau ke kandungan</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html"><span class="logo-mark">🍲</span> MasakApa</a>
+      <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <nav class="main-nav" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html" aria-current="page">Utama</a></li>
+          <li><a href="recipes.html">Semua Resepi</a></li>
+          <li><a href="search.html">Cari Ikut Bahan</a></li>
+          <li><a href="about.html">Tentang Kami</a></li>
+          <li><a href="contact.html">Hubungi Kami</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <h1>Hari ini nak masak apa?</h1>
+        <p class="hero-sub">Cari resepi berdasarkan bahan yang ada di dapur anda — pelbagai kaum, negara dan bajet.</p>
+        <form class="search-box" action="recipes.html" method="get">
+          <input type="search" name="q" placeholder="Cari nama resepi... cth: ayam masak kicap" aria-label="Cari resepi">
+          <button type="submit" class="btn">Cari</button>
+        </form>
+        <div class="hero-actions">
+          <a class="btn btn-secondary" href="search.html">🥕 Cari Ikut Bahan</a>
+          <a class="btn btn-outline" href="recipes.html">📖 Lihat Semua Resepi</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Kategori Popular</h2>
+          <a class="see-all" href="recipes.html">Lihat semua &rarr;</a>
+        </div>
+        <div class="chip-grid" id="category-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Resepi Pilihan</h2>
+          <a class="see-all" href="recipes.html">Lihat semua &rarr;</a>
+        </div>
+        <div class="recipe-grid" id="featured-grid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Masakan Mengikut Kaum</h2>
+        </div>
+        <div class="chip-grid" id="community-grid"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Masakan Antarabangsa</h2>
+        </div>
+        <div class="chip-grid" id="country-grid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Ada Bahan Ni, Boleh Masak Apa?</h2>
+        </div>
+        <p>Pilih bahan yang ada di dapur anda dan biar MasakApa cadangkan resepi yang sesuai — walaupun bahan tak lengkap sepenuhnya.</p>
+        <a class="btn" href="search.html">Mula Cari Ikut Bahan →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>MasakApa</h3>
+          <p>Platform resepi percuma untuk keluarga Malaysia — pelbagai kaum, pelbagai negara, satu dapur.</p>
+        </div>
+        <div>
+          <h3>Terokai</h3>
+          <ul>
+            <li><a href="recipes.html">Semua Resepi</a></li>
+            <li><a href="search.html">Cari Ikut Bahan</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tentang</h3>
+          <ul>
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="contact.html">Hubungi Kami</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; <span id="footer-year"></span> MasakApa. Ada bahan, ada resepi.
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const categoryGrid = document.getElementById("category-grid");
+      const communityGrid = document.getElementById("community-grid");
+      const countryGrid = document.getElementById("country-grid");
+      const featuredGrid = document.getElementById("featured-grid");
+
+      try {
+        const [categories, communities, countries, recipes] = await Promise.all([
+          MasakApa.fetchJSON("data/categories.json"),
+          MasakApa.fetchJSON("data/communities.json"),
+          MasakApa.fetchJSON("data/countries.json"),
+          MasakApa.loadRecipes(),
+        ]);
+
+        categoryGrid.innerHTML = categories
+          .slice(0, 12)
+          .map((c) => `<a class="chip-card" href="recipes.html?category=${encodeURIComponent(c.name)}"><span class="chip-icon">${c.icon}</span> ${MasakApa.escapeHtml(c.name)}</a>`)
+          .join("");
+
+        communityGrid.innerHTML = communities
+          .map((c) => `<a class="chip-card" href="recipes.html?community=${encodeURIComponent(c.name)}"><span class="chip-icon">🍽️</span> ${MasakApa.escapeHtml(c.name)}</a>`)
+          .join("");
+
+        countryGrid.innerHTML = countries
+          .map((c) => `<a class="chip-card" href="recipes.html?country=${encodeURIComponent(c.name)}"><span class="chip-icon">${c.flag}</span> ${MasakApa.escapeHtml(c.name)}</a>`)
+          .join("");
+
+        const featured = recipes.filter((r) => r.featured).slice(0, 8);
+        featuredGrid.innerHTML = featured.map(MasakApa.recipeCardHTML).join("");
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

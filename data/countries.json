@@ -1,0 +1,7 @@
+[
+  { "id": 1, "name": "Malaysia", "slug": "malaysia", "flag": "🇲🇾" },
+  { "id": 2, "name": "Indonesia", "slug": "indonesia", "flag": "🇮🇩" },
+  { "id": 3, "name": "Thailand", "slug": "thailand", "flag": "🇹🇭" },
+  { "id": 4, "name": "Korea Selatan", "slug": "korea-selatan", "flag": "🇰🇷" },
+  { "id": 5, "name": "Itali", "slug": "itali", "flag": "🇮🇹" }
+]
