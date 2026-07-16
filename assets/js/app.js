@@ -1,6 +1,6 @@
-/* MasakApa — shared utilities used across all pages. */
+/* LubukResepi — shared utilities used across all pages. */
 
-const MasakApa = (() => {
+const LubukResepi = (() => {
   const DATA_CACHE = {};
 
   async function fetchJSON(path) {

@@ -1,4 +1,4 @@
-# MasakApa
+# LubukResepi
 
 > Ada bahan, ada resepi.
 
@@ -23,7 +23,7 @@ index.html          Halaman utama
 recipes.html         Senarai & penapis resepi
 recipe.html           Halaman detail resepi (?slug=...)
 search.html            Cari resepi ikut bahan
-about.html               Tentang MasakApa
+about.html               Tentang LubukResepi
 contact.html               Hubungi kami
 
 assets/

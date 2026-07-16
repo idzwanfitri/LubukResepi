@@ -1,4 +1,4 @@
-/* MasakApa — search.html: smart recipe search based on ingredients on hand. */
+/* LubukResepi — search.html: smart recipe search based on ingredients on hand. */
 
 document.addEventListener("DOMContentLoaded", async () => {
   const pickerEl = document.getElementById("ingredient-picker");
@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     [recipes, ingredients] = await Promise.all([
-      MasakApa.loadRecipes(),
-      MasakApa.fetchJSON("data/ingredients.json"),
+      LubukResepi.loadRecipes(),
+      LubukResepi.fetchJSON("data/ingredients.json"),
     ]);
   } catch (err) {
     resultsEl.innerHTML = `<div class="empty-state"><span class="empty-emoji">⚠️</span>Gagal memuatkan data. Sila cuba semula.</div>`;
@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     .map(
       (cat) => `
       <div class="ingredient-category">
-        <h3>${MasakApa.escapeHtml(cat)}</h3>
+        <h3>${LubukResepi.escapeHtml(cat)}</h3>
         <div class="chip-row">
           ${byCategory[cat]
             .map(
               (ing) => `
-              <label class="chip" data-name="${MasakApa.escapeHtml(ing.name.toLowerCase())}">
-                <input type="checkbox" class="visually-hidden" value="${MasakApa.escapeHtml(ing.name)}">
-                ${MasakApa.escapeHtml(ing.name)}
+              <label class="chip" data-name="${LubukResepi.escapeHtml(ing.name.toLowerCase())}">
+                <input type="checkbox" class="visually-hidden" value="${LubukResepi.escapeHtml(ing.name)}">
+                ${LubukResepi.escapeHtml(ing.name)}
               </label>`
             )
             .join("")}
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   customInput.addEventListener(
     "input",
-    MasakApa.debounce(() => renderResults(), 250)
+    LubukResepi.debounce(() => renderResults(), 250)
   );
 
   clearBtn.addEventListener("click", () => {
@@ -128,12 +128,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     resultsEl.innerHTML = scored
       .map(({ recipe, match }) => {
         const level = levelFor(match.percent);
-        const missingNames = match.missing.map((i) => MasakApa.escapeHtml(i.name)).join(", ");
+        const missingNames = match.missing.map((i) => LubukResepi.escapeHtml(i.name)).join(", ");
         return `
         <a class="match-result-card" href="recipe.html?slug=${encodeURIComponent(recipe.slug)}">
-          <div class="match-emoji" style="background:${MasakApa.escapeHtml(recipe.color || "#f2b441")}22;">${recipe.emoji || "🍽️"}</div>
+          <div class="match-emoji" style="background:${LubukResepi.escapeHtml(recipe.color || "#f2b441")}22;">${recipe.emoji || "🍽️"}</div>
           <div class="match-result-body">
-            <div class="recipe-card-title">${MasakApa.escapeHtml(recipe.name)}</div>
+            <div class="recipe-card-title">${LubukResepi.escapeHtml(recipe.name)}</div>
             <div class="match-percent ${level.cls}">${match.percent}% · ${level.label}</div>
             <div class="progress-bar"><div class="progress-bar-fill" style="width:${match.percent}%"></div></div>
             ${

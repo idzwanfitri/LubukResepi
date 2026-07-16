@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MasakApa — Ada Bahan, Ada Resepi</title>
-  <meta name="description" content="MasakApa ialah platform resepi percuma yang menghimpunkan resepi pelbagai kaum dan negara. Cari resepi berdasarkan nama, kategori atau bahan yang ada di dapur anda.">
+  <title>LubukResepi — Ada Bahan, Ada Resepi</title>
+  <meta name="description" content="LubukResepi ialah platform resepi percuma yang menghimpunkan resepi pelbagai kaum dan negara. Cari resepi berdasarkan nama, kategori atau bahan yang ada di dapur anda.">
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
@@ -14,7 +14,7 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="logo" href="index.html"><span class="logo-mark">🍲</span> MasakApa</a>
+      <a class="logo" href="index.html"><span class="logo-mark">🍲</span> LubukResepi</a>
       <button class="nav-toggle" aria-label="Buka menu" aria-expanded="false">
         <span></span>
       </button>
@@ -89,7 +89,7 @@
         <div class="section-head">
           <h2>Ada Bahan Ni, Boleh Masak Apa?</h2>
         </div>
-        <p>Pilih bahan yang ada di dapur anda dan biar MasakApa cadangkan resepi yang sesuai — walaupun bahan tak lengkap sepenuhnya.</p>
+        <p>Pilih bahan yang ada di dapur anda dan biar LubukResepi cadangkan resepi yang sesuai — walaupun bahan tak lengkap sepenuhnya.</p>
         <a class="btn" href="search.html">Mula Cari Ikut Bahan →</a>
       </div>
     </section>
@@ -99,7 +99,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h3>MasakApa</h3>
+          <h3>LubukResepi</h3>
           <p>Platform resepi percuma untuk keluarga Malaysia — pelbagai kaum, pelbagai negara, satu dapur.</p>
         </div>
         <div>
@@ -118,7 +118,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        &copy; <span id="footer-year"></span> MasakApa. Ada bahan, ada resepi.
+        &copy; <span id="footer-year"></span> LubukResepi. Ada bahan, ada resepi.
       </div>
     </div>
   </footer>
@@ -133,27 +133,27 @@
 
       try {
         const [categories, communities, countries, recipes] = await Promise.all([
-          MasakApa.fetchJSON("data/categories.json"),
-          MasakApa.fetchJSON("data/communities.json"),
-          MasakApa.fetchJSON("data/countries.json"),
-          MasakApa.loadRecipes(),
+          LubukResepi.fetchJSON("data/categories.json"),
+          LubukResepi.fetchJSON("data/communities.json"),
+          LubukResepi.fetchJSON("data/countries.json"),
+          LubukResepi.loadRecipes(),
         ]);
 
         categoryGrid.innerHTML = categories
           .slice(0, 12)
-          .map((c) => `<a class="chip-card" href="recipes.html?category=${encodeURIComponent(c.name)}"><span class="chip-icon">${c.icon}</span> ${MasakApa.escapeHtml(c.name)}</a>`)
+          .map((c) => `<a class="chip-card" href="recipes.html?category=${encodeURIComponent(c.name)}"><span class="chip-icon">${c.icon}</span> ${LubukResepi.escapeHtml(c.name)}</a>`)
           .join("");
 
         communityGrid.innerHTML = communities
-          .map((c) => `<a class="chip-card" href="recipes.html?community=${encodeURIComponent(c.name)}"><span class="chip-icon">🍽️</span> ${MasakApa.escapeHtml(c.name)}</a>`)
+          .map((c) => `<a class="chip-card" href="recipes.html?community=${encodeURIComponent(c.name)}"><span class="chip-icon">🍽️</span> ${LubukResepi.escapeHtml(c.name)}</a>`)
           .join("");
 
         countryGrid.innerHTML = countries
-          .map((c) => `<a class="chip-card" href="recipes.html?country=${encodeURIComponent(c.name)}"><span class="chip-icon">${c.flag}</span> ${MasakApa.escapeHtml(c.name)}</a>`)
+          .map((c) => `<a class="chip-card" href="recipes.html?country=${encodeURIComponent(c.name)}"><span class="chip-icon">${c.flag}</span> ${LubukResepi.escapeHtml(c.name)}</a>`)
           .join("");
 
         const featured = recipes.filter((r) => r.featured).slice(0, 8);
-        featuredGrid.innerHTML = featured.map(MasakApa.recipeCardHTML).join("");
+        featuredGrid.innerHTML = featured.map(LubukResepi.recipeCardHTML).join("");
       } catch (err) {
         console.error(err);
       }

@@ -1,11 +1,11 @@
-/* MasakApa — filter/sort helpers shared by the recipes listing page. */
+/* LubukResepi — filter/sort helpers shared by the recipes listing page. */
 
-const MasakApaFilters = (() => {
+const LubukResepiFilters = (() => {
   function populateSelect(selectEl, items, { valueKey = "name", labelKey = "name", allLabel } = {}) {
     if (!selectEl) return;
-    const options = [`<option value="">${MasakApa.escapeHtml(allLabel)}</option>`];
+    const options = [`<option value="">${LubukResepi.escapeHtml(allLabel)}</option>`];
     items.forEach((item) => {
-      options.push(`<option value="${MasakApa.escapeHtml(item[valueKey])}">${MasakApa.escapeHtml(item[labelKey])}</option>`);
+      options.push(`<option value="${LubukResepi.escapeHtml(item[valueKey])}">${LubukResepi.escapeHtml(item[labelKey])}</option>`);
     });
     selectEl.innerHTML = options.join("");
   }

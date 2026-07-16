@@ -1,8 +1,8 @@
-/* MasakApa — recipe.html detail page: load by slug, servings scaler, related recipes. */
+/* LubukResepi — recipe.html detail page: load by slug, servings scaler, related recipes. */
 
 document.addEventListener("DOMContentLoaded", async () => {
   const root = document.getElementById("recipe-detail");
-  const slug = MasakApa.getParam("slug");
+  const slug = LubukResepi.getParam("slug");
 
   if (!slug) {
     root.innerHTML = notFoundHTML();
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let recipes = [];
   try {
-    recipes = await MasakApa.loadRecipes();
+    recipes = await LubukResepi.loadRecipes();
   } catch (err) {
     root.innerHTML = `<div class="empty-state"><span class="empty-emoji">⚠️</span>Gagal memuatkan resepi.</div>`;
     console.error(err);
@@ -24,22 +24,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  document.title = `${recipe.name} — MasakApa`;
+  document.title = `${recipe.name} — LubukResepi`;
   const metaDesc = document.querySelector('meta[name="description"]');
   if (metaDesc) metaDesc.setAttribute("content", recipe.description);
 
   let currentServings = recipe.servings;
 
   function ingredientsHTML(servings) {
-    const scaled = MasakApa.scaleIngredients(recipe.ingredients, recipe.servings, servings);
+    const scaled = LubukResepi.scaleIngredients(recipe.ingredients, recipe.servings, servings);
     return scaled
       .map((ing) => {
-        const qty = MasakApa.formatQuantity(ing.quantity);
-        const qtyText = qty ? `${qty} ${MasakApa.escapeHtml(ing.unit)}` : MasakApa.escapeHtml(ing.unit);
+        const qty = LubukResepi.formatQuantity(ing.quantity);
+        const qtyText = qty ? `${qty} ${LubukResepi.escapeHtml(ing.unit)}` : LubukResepi.escapeHtml(ing.unit);
         return `
         <li>
           <span class="ingredient-name">
-            ${MasakApa.escapeHtml(ing.name)}${ing.preparation ? ` <span class="ingredient-optional">(${MasakApa.escapeHtml(ing.preparation)})</span>` : ""}
+            ${LubukResepi.escapeHtml(ing.name)}${ing.preparation ? ` <span class="ingredient-optional">(${LubukResepi.escapeHtml(ing.preparation)})</span>` : ""}
             ${ing.optional ? '<span class="ingredient-optional"> · pilihan</span>' : ""}
           </span>
           <span class="ingredient-qty">${qtyText}</span>
@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function tagsHTML() {
     const tags = [];
-    if (recipe.country) tags.push(`<span class="badge badge-country">${MasakApa.escapeHtml(recipe.country)}</span>`);
-    if (recipe.community) tags.push(`<span class="badge">${MasakApa.escapeHtml(recipe.community)}</span>`);
-    (recipe.dietary_tags || []).forEach((t) => tags.push(`<span class="badge">${MasakApa.escapeHtml(t)}</span>`));
-    (recipe.category || []).forEach((c) => tags.push(`<span class="badge">${MasakApa.escapeHtml(c)}</span>`));
+    if (recipe.country) tags.push(`<span class="badge badge-country">${LubukResepi.escapeHtml(recipe.country)}</span>`);
+    if (recipe.community) tags.push(`<span class="badge">${LubukResepi.escapeHtml(recipe.community)}</span>`);
+    (recipe.dietary_tags || []).forEach((t) => tags.push(`<span class="badge">${LubukResepi.escapeHtml(t)}</span>`));
+    (recipe.category || []).forEach((c) => tags.push(`<span class="badge">${LubukResepi.escapeHtml(c)}</span>`));
     return tags.join("");
   }
 
@@ -65,25 +65,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     return `
       <div class="recipe-section">
         <h2>Resepi Berkaitan</h2>
-        <div class="recipe-grid">${related.map(MasakApa.recipeCardHTML).join("")}</div>
+        <div class="recipe-grid">${related.map(LubukResepi.recipeCardHTML).join("")}</div>
       </div>`;
   }
 
   root.innerHTML = `
-    <nav class="breadcrumb"><a href="index.html">Utama</a> / <a href="recipes.html">Resepi</a> / ${MasakApa.escapeHtml(recipe.name)}</nav>
+    <nav class="breadcrumb"><a href="index.html">Utama</a> / <a href="recipes.html">Resepi</a> / ${LubukResepi.escapeHtml(recipe.name)}</nav>
     <div class="recipe-hero">
-      <div class="recipe-hero-media" style="background:${MasakApa.escapeHtml(recipe.color || "#f2b441")}22;">
+      <div class="recipe-hero-media" style="background:${LubukResepi.escapeHtml(recipe.color || "#f2b441")}22;">
         <span aria-hidden="true">${recipe.emoji || "🍽️"}</span>
       </div>
       <div class="recipe-hero-info">
-        <h1 class="recipe-title">${MasakApa.escapeHtml(recipe.name)}</h1>
-        <p class="recipe-desc">${MasakApa.escapeHtml(recipe.description)}</p>
+        <h1 class="recipe-title">${LubukResepi.escapeHtml(recipe.name)}</h1>
+        <p class="recipe-desc">${LubukResepi.escapeHtml(recipe.description)}</p>
         <div class="chip-row">${tagsHTML()}</div>
         <div class="recipe-meta-grid">
-          <div class="meta-tile"><span class="meta-label">Penyediaan</span><span class="meta-value">${MasakApa.formatTime(recipe.prep_time)}</span></div>
-          <div class="meta-tile"><span class="meta-label">Memasak</span><span class="meta-value">${MasakApa.formatTime(recipe.cook_time)}</span></div>
-          <div class="meta-tile"><span class="meta-label">Kesukaran</span><span class="meta-value">${MasakApa.escapeHtml(recipe.difficulty)}</span></div>
-          <div class="meta-tile"><span class="meta-label">Anggaran Kos</span><span class="meta-value">${MasakApa.formatCost(recipe.estimated_cost)}</span></div>
+          <div class="meta-tile"><span class="meta-label">Penyediaan</span><span class="meta-value">${LubukResepi.formatTime(recipe.prep_time)}</span></div>
+          <div class="meta-tile"><span class="meta-label">Memasak</span><span class="meta-value">${LubukResepi.formatTime(recipe.cook_time)}</span></div>
+          <div class="meta-tile"><span class="meta-label">Kesukaran</span><span class="meta-value">${LubukResepi.escapeHtml(recipe.difficulty)}</span></div>
+          <div class="meta-tile"><span class="meta-label">Anggaran Kos</span><span class="meta-value">${LubukResepi.formatCost(recipe.estimated_cost)}</span></div>
         </div>
         <div class="recipe-actions">
           <div class="servings-control">
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             (step) => `
           <li>
             <span class="step-number">${step.number}</span>
-            <span>${MasakApa.escapeHtml(step.instruction)}</span>
+            <span>${LubukResepi.escapeHtml(step.instruction)}</span>
           </li>`
           )
           .join("")}
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? `<div class="recipe-section">
             <h2>Bahan Pengganti</h2>
             <ul class="subs-list">
-              ${recipe.substitutions.map((s) => `<li><strong>${MasakApa.escapeHtml(s.ingredient)}</strong> → ${MasakApa.escapeHtml(s.substitute)}</li>`).join("")}
+              ${recipe.substitutions.map((s) => `<li><strong>${LubukResepi.escapeHtml(s.ingredient)}</strong> → ${LubukResepi.escapeHtml(s.substitute)}</li>`).join("")}
             </ul>
           </div>`
         : ""
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       recipe.tips && recipe.tips.length
         ? `<div class="recipe-section">
             <h2>Tips</h2>
-            <ul class="tips-list">${recipe.tips.map((t) => `<li>💡 ${MasakApa.escapeHtml(t)}</li>`).join("")}</ul>
+            <ul class="tips-list">${recipe.tips.map((t) => `<li>💡 ${LubukResepi.escapeHtml(t)}</li>`).join("")}</ul>
           </div>`
         : ""
     }

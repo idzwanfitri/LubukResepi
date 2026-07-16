@@ -1,4 +1,4 @@
-/* MasakApa — recipes.html listing page: filters, sort, search-by-name. */
+/* LubukResepi — recipes.html listing page: filters, sort, search-by-name. */
 
 document.addEventListener("DOMContentLoaded", async () => {
   const grid = document.getElementById("recipe-grid");
@@ -17,16 +17,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const [recipes, categories, countries, communities] = await Promise.all([
-      MasakApa.loadRecipes(),
-      MasakApa.fetchJSON("data/categories.json"),
-      MasakApa.fetchJSON("data/countries.json"),
-      MasakApa.fetchJSON("data/communities.json"),
+      LubukResepi.loadRecipes(),
+      LubukResepi.fetchJSON("data/categories.json"),
+      LubukResepi.fetchJSON("data/countries.json"),
+      LubukResepi.fetchJSON("data/communities.json"),
     ]);
     allRecipes = recipes;
 
-    MasakApaFilters.populateSelect(categorySelect, categories, { valueKey: "name", labelKey: "name", allLabel: "Semua Kategori" });
-    MasakApaFilters.populateSelect(countrySelect, countries, { valueKey: "name", labelKey: "name", allLabel: "Semua Negara" });
-    MasakApaFilters.populateSelect(communitySelect, communities, { valueKey: "name", labelKey: "name", allLabel: "Semua Kaum" });
+    LubukResepiFilters.populateSelect(categorySelect, categories, { valueKey: "name", labelKey: "name", allLabel: "Semua Kategori" });
+    LubukResepiFilters.populateSelect(countrySelect, countries, { valueKey: "name", labelKey: "name", allLabel: "Semua Negara" });
+    LubukResepiFilters.populateSelect(communitySelect, communities, { valueKey: "name", labelKey: "name", allLabel: "Semua Kaum" });
   } catch (err) {
     grid.innerHTML = `<div class="empty-state"><span class="empty-emoji">⚠️</span>Gagal memuatkan resepi. Sila cuba semula.</div>`;
     console.error(err);
@@ -51,8 +51,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function render() {
-    const filtered = MasakApaFilters.applyFilters(allRecipes, currentFilters());
-    const sorted = MasakApaFilters.sortRecipes(filtered, sortSelect.value);
+    const filtered = LubukResepiFilters.applyFilters(allRecipes, currentFilters());
+    const sorted = LubukResepiFilters.sortRecipes(filtered, sortSelect.value);
 
     resultsCount.textContent = `${sorted.length} resepi dijumpai`;
 
@@ -62,10 +62,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
     emptyState.hidden = true;
-    grid.innerHTML = sorted.map(MasakApa.recipeCardHTML).join("");
+    grid.innerHTML = sorted.map(LubukResepi.recipeCardHTML).join("");
   }
 
-  const debouncedRender = MasakApa.debounce(render, 200);
+  const debouncedRender = LubukResepi.debounce(render, 200);
 
   searchInput.addEventListener("input", debouncedRender);
   [categorySelect, countrySelect, communitySelect, difficultySelect, timeSelect, sortSelect].forEach((el) => {
